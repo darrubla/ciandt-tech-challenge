@@ -1,24 +1,12 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
+
+import RoutesComponent from './Routes'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://pokeapi.co/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Gotta Catch&apos;Em All!!!!
-        </a>
-      </header>
-    </div>
-  );
+    <RoutesComponent />
+  )
 }
 
-export default App;
+export default App
