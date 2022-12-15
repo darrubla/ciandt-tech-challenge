@@ -4,7 +4,11 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 
 import ButtonComponent from '../../components/Button'
 
-import { auth, signInWithEmailAndPassword, signInWithGoogle } from '../../services/firebase'
+import {
+  auth,
+  signInWithEmailAndPassword,
+  signInWithGoogle,
+} from '../../services/firebase'
 import notify from '../../utils/notifyToast'
 
 import './Login.scss'
@@ -25,9 +29,17 @@ function Login() {
 
   const handleSubmit = () => {
     if (password.length < 6) {
-      notify('error', '!Hola, por favor valida que tu contraseña tenga 6 o más carácteres!', 'error_pwd')
+      notify(
+        'error',
+        '!Hola, por favor valida que tu contraseña tenga 6 o más carácteres!',
+        'error_pwd'
+      )
     } else if (!isVaildEmail(email)) {
-      notify('error', '!Hola, por favor escribe un correo válido!', 'error_email')
+      notify(
+        'error',
+        '!Hola, por favor escribe un correo válido!',
+        'error_email'
+      )
     } else {
       signInWithEmailAndPassword(email, password)
     }
@@ -56,14 +68,16 @@ function Login() {
           id="Login-btn"
           className="login__btn"
           action={() => handleSubmit()}
-          text="Login" />
+          text="Login"
+        />
         <ButtonComponent
           secondary
           id="Login-google-btn"
           type="button"
           className="login__btn login__google"
           action={signInWithGoogle}
-          text="Login with Google" />
+          text="Login with Google"
+        />
         <span>
           Don&apos;t have an account? <Link to="/register">Register</Link> now.
         </span>

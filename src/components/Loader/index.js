@@ -36,9 +36,9 @@ export default function LoaderComponent({ show }) {
 }
 
 LoaderComponent.propTypes = {
-  show: PropTypes.bool
+  show: PropTypes.bool,
 }
 
 LoaderComponent.defaultProps = {
-  show: false
+  show: false,
 }

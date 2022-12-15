@@ -24,9 +24,13 @@ function Header({ name, filterPokemon }) {
   useEffect(() => {
     const lista = getListado(undefined, 2000)
     lista
-      .then(res => setListado(res.data.results))
+      .then((res) => setListado(res.data.results))
       .catch(() => {
-        notify('error', '¡Upps, parece que la base de datos de la pokedex está en actualización, prueba más tarde!', 'getListadoError')
+        notify(
+          'error',
+          '¡Upps, parece que la base de datos de la pokedex está en actualización, prueba más tarde!',
+          'getListadoError'
+        )
       })
   }, [])
 
@@ -64,10 +68,10 @@ function Header({ name, filterPokemon }) {
           value={value}
           inputValue={inputText}
           onInputChange={(event, newInputValue) => {
-            setInputText(newInputValue);
+            setInputText(newInputValue)
           }}
           onChange={(event, newValue) => {
-            setValue(newValue);
+            setValue(newValue)
           }}
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="option" />}
@@ -83,9 +87,7 @@ Header.propTypes = {
   isloading: PropTypes.bool.isRequired,
 }
 
-function mapStateToProps({
-  Filter: { filterPokemon },
-}) {
+function mapStateToProps({ Filter: { filterPokemon } }) {
   return {
     filterPokemon,
   }

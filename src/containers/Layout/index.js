@@ -12,10 +12,7 @@ import { logout, auth } from '../../services/firebase'
 import './Layout.scss'
 import IsLogged from '../../utils/IsLogged'
 
-const url = [
-  '/home',
-  '/favorites'
-]
+const url = ['/home', '/favorites']
 
 export default function Layout({ children }) {
   const navigate = useNavigate()
@@ -30,7 +27,7 @@ export default function Layout({ children }) {
       logout()
       navigate('/')
     }
-  }, [value]);
+  }, [value])
 
   useEffect(() => {
     setValue(url.indexOf(location.pathname))
@@ -49,7 +46,10 @@ export default function Layout({ children }) {
           }}
         >
           <BottomNavigationAction label="Home" icon={<Icon>home</Icon>} />
-          <BottomNavigationAction label="Favorites" icon={<Icon>favorite</Icon>} />
+          <BottomNavigationAction
+            label="Favorites"
+            icon={<Icon>favorite</Icon>}
+          />
           <BottomNavigationAction label="Logout" icon={<Icon>logout</Icon>} />
         </BottomNavigation>
       </section>
@@ -58,5 +58,5 @@ export default function Layout({ children }) {
 }
 
 Layout.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 }

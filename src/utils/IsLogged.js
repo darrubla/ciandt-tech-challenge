@@ -22,5 +22,4 @@ IsLogged.defaultProps = {
   children: <div>Element</div>,
 }
 
-
 export default IsLogged
