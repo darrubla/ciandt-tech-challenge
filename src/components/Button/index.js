@@ -6,16 +6,8 @@ import { Button } from '@mui/material'
 import './Button.scss'
 
 function ButtonComponent(props) {
-  const {
-    className,
-    id,
-    text,
-    disabled,
-    secondary,
-    action,
-    children,
-    name,
-  } = props
+  const { className, id, text, disabled, secondary, action, children, name } =
+    props
   return (
     <Button
       type="button"
@@ -51,7 +43,7 @@ ButtonComponent.defaultProps = {
   secondary: false,
   action: () => {},
   children: undefined,
-  name: ''
+  name: '',
 }
 
 export default ButtonComponent

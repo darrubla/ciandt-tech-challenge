@@ -3,7 +3,13 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
-import { doc, setDoc, arrayUnion, arrayRemove, updateDoc } from 'firebase/firestore'
+import {
+  doc,
+  setDoc,
+  arrayUnion,
+  arrayRemove,
+  updateDoc,
+} from 'firebase/firestore'
 import notify from '../utils/notifyToast'
 
 const {
@@ -13,7 +19,7 @@ const {
   REACT_APP_STORAGE_BUCKET,
   REACT_APP_MESSAGING_SENDER_ID,
   REACT_APP_FIREBASE_APP_Id,
-  REACT_APP_MEASUREMENT_ID
+  REACT_APP_MEASUREMENT_ID,
 } = process.env
 
 const firebaseConfig = {
@@ -23,7 +29,7 @@ const firebaseConfig = {
   storageBucket: REACT_APP_STORAGE_BUCKET,
   messagingSenderId: REACT_APP_MESSAGING_SENDER_ID,
   appId: REACT_APP_FIREBASE_APP_Id,
-  measurementId: REACT_APP_MEASUREMENT_ID
+  measurementId: REACT_APP_MEASUREMENT_ID,
 }
 
 const app = firebase.initializeApp(firebaseConfig)
@@ -49,7 +55,11 @@ const signInWithGoogle = async () => {
       })
     }
   } catch (err) {
-    notify('error', '!Upss el usuario no se ha podido conectar, por favor verifica tus datos!', 'error_adding_favorite')
+    notify(
+      'error',
+      '!Upss el usuario no se ha podido conectar, por favor verifica tus datos!',
+      'error_adding_favorite'
+    )
   }
 }
 
@@ -57,8 +67,11 @@ const signInWithEmailAndPassword = async (email, password) => {
   try {
     const res = await auth.signInWithEmailAndPassword(email, password)
   } catch (err) {
-    console.error(err)
-    notify('error', '!Upss el usuario no se ha podido conectar, por favor revisa tus datos!', 'error_auth')
+    notify(
+      'error',
+      '!Upss el usuario no se ha podido conectar, por favor revisa tus datos!',
+      'error_auth'
+    )
   }
 }
 
@@ -73,42 +86,57 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       email,
     })
   } catch (err) {
-    notify('error', '!Upss el usuario no se ha podido crear, por favor verifica tus datos!', 'error_register')
+    notify(
+      'error',
+      '!Upss el usuario no se ha podido crear, por favor verifica tus datos!',
+      'error_register'
+    )
   }
 }
-
 
 const addFavorites = async (id, email) => {
   try {
     const docRef = await setDoc(doc(db, 'usuarios', email), {
-      favorites: [id]
-    });
+      favorites: [id],
+    })
   } catch (e) {
-    notify('error', '!Upss ha ocurrido un error, vuelve a intentarlo más tarde!', 'error_adding_favorite')
+    notify(
+      'error',
+      '!Upss ha ocurrido un error, vuelve a intentarlo más tarde!',
+      'error_adding_favorite'
+    )
   }
 }
 
 const updateFavorites = async (id, email) => {
-  const document = doc(db, 'usuarios', email);
+  const document = doc(db, 'usuarios', email)
   try {
     await updateDoc(document, {
-      favorites: arrayUnion(id)
+      favorites: arrayUnion(id),
     })
   } catch (e) {
-    notify('error', '!Upss ha ocurrido un error, vuelve a intentarlo más tarde!', 'error_updating_favorite')
+    notify(
+      'error',
+      '!Upss ha ocurrido un error, vuelve a intentarlo más tarde!',
+      'error_updating_favorite'
+    )
   }
-};
+}
 
 const removeFavorites = async (id, email) => {
-  const document = doc(db, 'usuarios', email);
+  const document = doc(db, 'usuarios', email)
   try {
     await updateDoc(document, {
-      favorites: arrayRemove(id)
+      favorites: arrayRemove(id),
     })
   } catch (e) {
-    notify('error', '!Upss ha ocurrido un error, vuelve a intentarlo más tarde!', 'error_removing_favorite')
+    notify(
+      'error',
+      '!Upss ha ocurrido un error, vuelve a intentarlo más tarde!',
+      'error_removing_favorite'
+    )
   }
-};
+}
 
 const logout = () => {
   auth.signOut()

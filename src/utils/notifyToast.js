@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
 const notify = (type, text, id) => {
   const toastType = {
@@ -7,7 +7,7 @@ const notify = (type, text, id) => {
     info: 'info',
   }
   toast[toastType[type]](text, {
-    toastId: id
+    toastId: id,
   })
 }
 

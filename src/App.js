@@ -4,9 +4,7 @@ import './App.css'
 import RoutesComponent from './Routes'
 
 function App() {
-  return (
-    <RoutesComponent />
-  )
+  return <RoutesComponent />
 }
 
 export default App
