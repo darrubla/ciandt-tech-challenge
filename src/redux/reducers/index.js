@@ -1,3 +1,9 @@
 import { combineReducers } from 'redux'
 
-export default combineReducers({})
+import Filter from './FilterReducers'
+import Home from './HomeReducers'
+
+export default combineReducers({
+  Filter,
+  Home,
+})

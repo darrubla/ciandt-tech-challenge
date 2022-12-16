@@ -1,11 +1,14 @@
 import React from 'react'
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { Routes, Route, BrowserRouter, Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
+import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Layout from './containers/Layout'
 
 import 'react-toastify/dist/ReactToastify.css'
+import IsLogged from './utils/IsLogged';
 
 export default function RoutesComponent() {
   return (
@@ -14,6 +17,21 @@ export default function RoutesComponent() {
         {/* Unprotected Routes */}
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        {/* Protected Routes */}
+        <Route element={
+          <IsLogged >
+            <Layout>
+              <Outlet />
+            </Layout >
+          </IsLogged>
+        }>
+          <Route path="/home" element={<Home />} />
+        </Route>
+
+        {/* Not Found Route */}
+        <Route path="*" element={<Login />} />
+
       </Routes>
       <ToastContainer
         position="top-right"

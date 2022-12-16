@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import PropTypes from 'prop-types'
 
 import { BottomNavigation, BottomNavigationAction } from '@mui/material'
-import Icon from '@material-ui/core/Icon'
+import { Icon } from '@material-ui/core'
 import Header from '../../components/Header'
 
 import { logout, auth } from '../../services/firebase'

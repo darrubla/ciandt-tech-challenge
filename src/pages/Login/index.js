@@ -24,7 +24,7 @@ function Login() {
     if (loading) {
       return
     }
-    if (user) navigate('/')
+    if (user) navigate('/home')
   }, [user, loading])
 
   const handleSubmit = () => {
