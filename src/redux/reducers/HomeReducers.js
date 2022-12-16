@@ -17,7 +17,7 @@ export const initialState = {
   ...initialStateGetPokemonList,
 }
 
-const HomeReducer = (state = initialState, action) => {
+export const HomeReducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
     case GET_POKEMON_LIST_STARTED: {

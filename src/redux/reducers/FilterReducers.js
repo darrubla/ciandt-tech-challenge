@@ -18,7 +18,7 @@ export const initialState = {
   ...initialStateFilter,
 }
 
-const FilterPokemonReducer = (state = initialState, action) => {
+export const FilterPokemonReducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
     case FILTER_STARTED: {
