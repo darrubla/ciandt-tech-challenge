@@ -18,7 +18,7 @@ describe('Filter Reducers tests', () => {
       filterPokemonIsLoading: true,
     }
     expect(FilterPokemonReducer({}, action)).toEqual(expectedResult)
-  });
+  })
   it('Should return newState when action type FILTER_SUCCESS', () => {
     const action = {
       type: FILTER_SUCCESS,
@@ -31,7 +31,7 @@ describe('Filter Reducers tests', () => {
       filterPokemonIsLoading: false,
     }
     expect(FilterPokemonReducer({}, action)).toEqual(expectedResult)
-  });
+  })
   it('Should return newState when action type FILTER_FAILED', () => {
     const action = {
       type: FILTER_FAILED,
@@ -44,7 +44,7 @@ describe('Filter Reducers tests', () => {
       filterPokemonError: action.payload,
     }
     expect(FilterPokemonReducer({}, action)).toEqual(expectedResult)
-  });
+  })
   it('Should return newState when action type CLEAR_FILTER', () => {
     const action = {
       type: CLEAR_FILTER,
@@ -54,5 +54,5 @@ describe('Filter Reducers tests', () => {
       ...initialState,
     }
     expect(FilterPokemonReducer({}, action)).toEqual(expectedResult)
-  });
-});
+  })
+})

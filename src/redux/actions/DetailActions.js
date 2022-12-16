@@ -47,12 +47,17 @@ const GetPokemonDetails = (pokemonName) => async (dispatch) => {
     const url = `${urlBase}${pokemonName}`
     const result = await axios({
       method: 'GET',
-      url
+      url,
     })
     validateServerResponse(result)
     dispatch(GetPokemonDetailsSuccess(result.data))
   } catch (error) {
-    handleActionCatch(error, dispatch, GetPokemonDetailsFailed, 'Get Pokemon Detail')
+    handleActionCatch(
+      error,
+      dispatch,
+      GetPokemonDetailsFailed,
+      'Get Pokemon Detail'
+    )
   }
 }
 
@@ -63,12 +68,17 @@ export const GetPokemonEntry = (pokemonId) => async (dispatch) => {
     const url = `${urlBase}-species/${pokemonId}/`
     const result = await axios({
       method: 'GET',
-      url
+      url,
     })
     validateServerResponse(result)
     dispatch(GetPokemonEntrySuccess(result.data))
   } catch (error) {
-    handleActionCatch(error, dispatch, GetPokemonEntryFailed, 'Get Pokemon Entry')
+    handleActionCatch(
+      error,
+      dispatch,
+      GetPokemonEntryFailed,
+      'Get Pokemon Entry'
+    )
   }
 }
 

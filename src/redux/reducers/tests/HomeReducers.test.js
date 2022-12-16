@@ -17,7 +17,7 @@ describe('Home Reducers tests', () => {
       pokemonListIsLoading: true,
     }
     expect(HomeReducer({}, action)).toEqual(expectedResult)
-  });
+  })
   it('Should return newState when action type GET_POKEMON_LIST_SUCCESS', () => {
     const action = {
       type: GET_POKEMON_LIST_SUCCESS,
@@ -30,7 +30,7 @@ describe('Home Reducers tests', () => {
       pokemonListIsLoading: false,
     }
     expect(HomeReducer({}, action)).toEqual(expectedResult)
-  });
+  })
   it('Should return newState when action type GET_POKEMON_LIST_FAILED', () => {
     const action = {
       type: GET_POKEMON_LIST_FAILED,
@@ -43,5 +43,5 @@ describe('Home Reducers tests', () => {
       pokemonListError: action.payload,
     }
     expect(HomeReducer({}, action)).toEqual(expectedResult)
-  });
-});
+  })
+})

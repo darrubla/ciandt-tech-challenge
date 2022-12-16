@@ -31,7 +31,7 @@ const FilterPokemon = (url) => async (dispatch) => {
   try {
     const result = await axios({
       method: 'GET',
-      url
+      url,
     })
     validateServerResponse(result)
     dispatch(FilterPokemonSuccess(result.data))

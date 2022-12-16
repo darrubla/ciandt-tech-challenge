@@ -26,11 +26,19 @@ function Register() {
 
   const handleSubmit = () => {
     if (password.length < 6) {
-      notify('error', '!Hola, por favor valida que tu contraseña tenga 6 o más carácteres!', 'error_pwd')
+      notify(
+        'error',
+        '!Hola, por favor valida que tu contraseña tenga 6 o más carácteres!',
+        'error_pwd'
+      )
     } else if (!isVaildEmail(email)) {
       notify('error', '!Hola, por favor escribe un correo válido!', 'error_pwd')
     } else if (name.length < 1) {
-      notify('error', '!Hola, por favor escribe tu nombre completo!', 'error_name')
+      notify(
+        'error',
+        '!Hola, por favor escribe tu nombre completo!',
+        'error_name'
+      )
     } else {
       registerWithEmailAndPassword(name, email, password)
     }

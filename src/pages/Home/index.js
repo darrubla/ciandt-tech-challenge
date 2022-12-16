@@ -14,7 +14,6 @@ import { auth } from '../../services/firebase'
 import './Home.scss'
 
 function Home({ filterPokemon, isloading, pokemonList }) {
-
   const dispatch = useDispatch()
   const [user] = useAuthState(auth)
   const [listado, setListado] = useState(null)
@@ -23,10 +22,12 @@ function Home({ filterPokemon, isloading, pokemonList }) {
   const setFilteredPokemon = () => {
     const { name } = filterPokemon
     setOffset(0)
-    setListado([{
-      name,
-      url: `https://pokeapi.co/api/v2/pokemon/${name}`
-    }])
+    setListado([
+      {
+        name,
+        url: `https://pokeapi.co/api/v2/pokemon/${name}`,
+      },
+    ])
   }
 
   useEffect(() => {
@@ -36,7 +37,10 @@ function Home({ filterPokemon, isloading, pokemonList }) {
   }, [offSet])
 
   useEffect(() => {
-    if (pokemonList?.length >= 1 && !Object.values(filterPokemon)?.length >= 1) {
+    if (
+      pokemonList?.length >= 1 &&
+      !Object.values(filterPokemon)?.length >= 1
+    ) {
       setListado(pokemonList)
     }
   }, [pokemonList])
@@ -51,11 +55,8 @@ function Home({ filterPokemon, isloading, pokemonList }) {
 
   const handleListado = () => {
     if (listado && user) {
-      return listado.map(pokemon => (
-        <PokeCard
-          user={user.email}
-          key={pokemon.name}
-          url={pokemon.url} />
+      return listado.map((pokemon) => (
+        <PokeCard user={user.email} key={pokemon.name} url={pokemon.url} />
       ))
     }
     return null
@@ -69,9 +70,7 @@ function Home({ filterPokemon, isloading, pokemonList }) {
   return (
     <Container>
       <LoaderComponent show={isloading} />
-      <section className="home">
-        {user && handleListado()}
-      </section>
+      <section className="home">{user && handleListado()}</section>
       {listado?.length >= 20 && (
         <div className="home__nav-buttons">
           <ButtonComponent
@@ -79,13 +78,15 @@ function Home({ filterPokemon, isloading, pokemonList }) {
             id="Back-btn"
             action={({ target }) => handleClick(target)}
             variant="contained"
-            text="< Back" />
+            text="< Back"
+          />
           <ButtonComponent
             name="next"
             id="Next-btn"
             action={({ target }) => handleClick(target)}
             variant="contained"
-            text="Next >" />
+            text="Next >"
+          />
         </div>
       )}
     </Container>
@@ -100,7 +101,7 @@ Home.propTypes = {
 
 function mapStateToProps({
   Filter: { filterPokemon, filterPokemonIsLoading },
-  Home: { pokemonList, pokemonListIsLoading }
+  Home: { pokemonList, pokemonListIsLoading },
 }) {
   return {
     filterPokemon,

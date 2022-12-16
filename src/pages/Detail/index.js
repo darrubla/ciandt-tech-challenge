@@ -6,7 +6,9 @@ import PropTypes from 'prop-types'
 import { Container } from '@mui/material'
 import LoaderComponent from '../../components/Loader'
 
-import GetPokemonDetails, { GetPokemonEntry } from '../../redux/actions/DetailActions'
+import GetPokemonDetails, {
+  GetPokemonEntry,
+} from '../../redux/actions/DetailActions'
 
 import './Detail.scss'
 import Chart from '../../components/Chart'
@@ -42,9 +44,10 @@ function Detail({ pokemonDetails, isloading, pokemonEntry }) {
     }
   }, [pokemon])
 
-  const showTypes = () => (
-    pokemon.types.map((type) => <label key={`${type.type.name}`}>{type.type.name}</label>)
-  )
+  const showTypes = () =>
+    pokemon.types.map((type) => (
+      <label key={`${type.type.name}`}>{type.type.name}</label>
+    ))
 
   const renderStats = (stats) => {
     if (stats.length > 0) {
@@ -58,14 +61,16 @@ function Detail({ pokemonDetails, isloading, pokemonEntry }) {
       }
       const data = {}
       stats.forEach((stat) => {
-        data[stat.stat.name] = stat.base_stat/255
+        data[stat.stat.name] = stat.base_stat / 255
       })
       return (
         <Chart
-          data={[{
-            data,
-            meta: { color: 'blue'}
-          }]}
+          data={[
+            {
+              data,
+              meta: { color: 'blue' },
+            },
+          ]}
           captions={captions}
         />
       )
@@ -81,27 +86,31 @@ function Detail({ pokemonDetails, isloading, pokemonEntry }) {
           <LoaderComponent show={isloading} />
           <section className="detail-card container" to={`/${name}`}>
             <div className="detail-card__title">
-              <h3>#{id} - {name}</h3>
+              <h3>
+                #{id} - {name}
+              </h3>
             </div>
             <div className="detail-card__body">
-              <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} alt={`logo pokemon #${id}`} />
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+                alt={`logo pokemon #${id}`}
+              />
               <section>
-                <div className="detail-card__types">
-                  {showTypes()}
-                </div>
-                {entry &&
+                <div className="detail-card__types">{showTypes()}</div>
+                {entry && (
                   <h5>
-                    <strong>Description: </strong>{entry.flavor_text_entries[10].flavor_text}
+                    <strong>Description: </strong>
+                    {entry.flavor_text_entries[10].flavor_text}
                   </h5>
-                }
-                {entry &&
+                )}
+                {entry && (
                   <div className="detail-card__stats">
                     <h5>
                       <strong>Growth rate: </strong> {entry.growth_rate.name}
                     </h5>
                     {renderStats(stats)}
                   </div>
-                }
+                )}
               </section>
             </div>
           </section>
@@ -120,7 +129,12 @@ Detail.propTypes = {
 }
 
 function mapStateToProps({
-  Detail: { pokemonDetails, pokemonDetailsIsLoading, pokemonEntry, pokemonEntryIsLoading }
+  Detail: {
+    pokemonDetails,
+    pokemonDetailsIsLoading,
+    pokemonEntry,
+    pokemonEntryIsLoading,
+  },
 }) {
   return {
     pokemonDetails,
