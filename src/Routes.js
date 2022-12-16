@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify'
 
 import Home from './pages/Home'
 import Login from './pages/Login'
+import Detail from './pages/Detail'
 import Register from './pages/Register'
 import Layout from './containers/Layout'
 
@@ -27,6 +28,7 @@ export default function RoutesComponent() {
           </IsLogged>
         }>
           <Route path="/home" element={<Home />} />
+          <Route path="/pokemon/:name" element={<Detail />} />
         </Route>
 
         {/* Not Found Route */}
