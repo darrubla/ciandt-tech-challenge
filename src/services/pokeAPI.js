@@ -16,6 +16,11 @@ export const getPokeInfo = (url) => axios({
   url
 })
 
+export const getPokeStats = (id) => axios({
+  method: 'GET',
+  url: `https://pokeapi.co/api/v2/stat/${id}`
+})
+
 export const getUrl = (id) => {
   const url = `${urlBase}/${id}`
   return url

@@ -2,7 +2,7 @@
 
 .detail-card {
   &.container {
-    height: 400px;
+    height: 520px;
     display: grid;
     grid-template-rows: 1fr 6fr;
     background-color: papayawhip;
@@ -15,6 +15,12 @@
     & * {
       color: black;
     }
+  }
+
+  &__stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__title {
@@ -69,6 +75,10 @@
       h5 {
         @extend .fn-h4-regular;
       }
+
+      & svg text {
+        font-size: 18px;
+      }
     }
   }
 
@@ -103,6 +113,9 @@
       h5 {
         font-size: 15px;
         font-weight: bold;
+      }
+      & svg {
+        display: none;
       }
     }
   }
