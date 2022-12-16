@@ -24,22 +24,33 @@ export const GetPokemonListFailed = (payload) => ({
   payload,
 })
 
-const GetPokemonList = (offset = 0, limit = 20) => async (dispatch) => {
-  dispatch(GetPokemonListStarted())
-  try {
-    const urlBase = 'https://pokeapi.co/api/v2/pokemon'
-    const url = `${urlBase}/?limit=${limit}&offset=${offset}`
-    const result = await axios({
-      method: 'GET',
-      url
-    })
+const GetPokemonList =
+  (offset = 0, limit = 20) =>
+  async (dispatch) => {
+    dispatch(GetPokemonListStarted())
+    try {
+      const urlBase = 'https://pokeapi.co/api/v2/pokemon'
+      const url = `${urlBase}/?limit=${limit}&offset=${offset}`
+      const result = await axios({
+        method: 'GET',
+        url,
+      })
 
-    validateServerResponse(result)
-    dispatch(GetPokemonListSuccess(result.data.results))
-  } catch (error) {
-    notify('error', '¡Upps, parece que la base de datos de la pokedex está en actualización, prueba más tarde!', 'getListadoError')
-    handleActionCatch(error, dispatch, GetPokemonListFailed, 'Get Pokemon List')
+      validateServerResponse(result)
+      dispatch(GetPokemonListSuccess(result.data.results))
+    } catch (error) {
+      notify(
+        'error',
+        '¡Upps, parece que la base de datos de la pokedex está en actualización, prueba más tarde!',
+        'getListadoError'
+      )
+      handleActionCatch(
+        error,
+        dispatch,
+        GetPokemonListFailed,
+        'Get Pokemon List'
+      )
+    }
   }
-}
 
 export default GetPokemonList

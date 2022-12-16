@@ -22,16 +22,16 @@ export default function Favorites() {
   useEffect(() => {
     if (user) {
       // eslint-disable-next-line no-unused-vars
-      const unsubscribe = db
-        .collection('usuarios')
-        .onSnapshot((snapshot) => {
-          const data = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          const list = data.filter(item => item.id === user.multiFactor.user.email)
-          setDocListener(list[0]);
-        });
+      const unsubscribe = db.collection('usuarios').onSnapshot((snapshot) => {
+        const data = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+        const list = data.filter(
+          (item) => item.id === user.multiFactor.user.email
+        )
+        setDocListener(list[0])
+      })
     }
   }, [])
 
@@ -60,38 +60,32 @@ export default function Favorites() {
     const listToRender = pokemon.slice(offSet * 20, (offSet + 1) * 20)
     return listToRender.map((pokeUrl, idx) => {
       const keyx = `${pokeUrl}${idx}`
-      return (
-        <PokeCard
-          user={user.email}
-          key={keyx}
-          url={pokeUrl} />
-      )
+      return <PokeCard user={user.email} key={keyx} url={pokeUrl} />
     })
   }
 
   return (
     <Container>
       <LoaderComponent />
-      <section className="home">
-        {handleListado()}
-      </section>
-      {(pages > 1 && pokemon) && (
+      <section className="home">{handleListado()}</section>
+      {pages > 1 && pokemon && (
         <div className="home__nav-buttons">
           <ButtonComponent
             name="back"
             id="Back-btn"
             action={({ target }) => handleClick(target)}
             variant="contained"
-            text="< Back" />
+            text="< Back"
+          />
           <ButtonComponent
             name="next"
             id="Next-btn"
             action={({ target }) => handleClick(target)}
             variant="contained"
-            text="Next >" />
+            text="Next >"
+          />
         </div>
-      )
-      }
+      )}
     </Container>
   )
 }

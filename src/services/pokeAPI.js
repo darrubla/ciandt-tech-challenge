@@ -7,19 +7,21 @@ export const getListado = (offset = 0, limit = 20) => {
 
   return axios({
     method: 'GET',
-    url
+    url,
   })
 }
 
-export const getPokeInfo = (url) => axios({
-  method: 'GET',
-  url
-})
+export const getPokeInfo = (url) =>
+  axios({
+    method: 'GET',
+    url,
+  })
 
-export const getPokeStats = (id) => axios({
-  method: 'GET',
-  url: `https://pokeapi.co/api/v2/stat/${id}`
-})
+export const getPokeStats = (id) =>
+  axios({
+    method: 'GET',
+    url: `https://pokeapi.co/api/v2/stat/${id}`,
+  })
 
 export const getUrl = (id) => {
   const url = `${urlBase}/${id}`

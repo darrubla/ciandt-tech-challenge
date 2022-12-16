@@ -20,7 +20,7 @@ describe('Detail Reducers tests', () => {
       pokemonDetailsIsLoading: true,
     }
     expect(DetailReducer(initialState, action)).toEqual(expectedResult)
-  });
+  })
   it('Should return newState when action type GET_DETAILS_SUCCESS', () => {
     const action = {
       type: GET_DETAILS_SUCCESS,
@@ -33,7 +33,7 @@ describe('Detail Reducers tests', () => {
       pokemonDetailsIsLoading: false,
     }
     expect(DetailReducer(initialState, action)).toEqual(expectedResult)
-  });
+  })
   it('Should return newState when action type GET_DETAILS_FAILED', () => {
     const action = {
       type: GET_DETAILS_FAILED,
@@ -46,7 +46,7 @@ describe('Detail Reducers tests', () => {
       pokemonDetailsError: action.payload,
     }
     expect(DetailReducer(initialState, action)).toEqual(expectedResult)
-  });
+  })
   it('Should return newState when action type GET_ENTRY_STARTED', () => {
     const action = {
       type: GET_ENTRY_STARTED,
@@ -57,7 +57,7 @@ describe('Detail Reducers tests', () => {
       pokemonEntryIsLoading: true,
     }
     expect(DetailReducer(initialState, action)).toEqual(expectedResult)
-  });
+  })
   it('Should return newState when action type GET_ENTRY_SUCCESS', () => {
     const action = {
       type: GET_ENTRY_SUCCESS,
@@ -70,7 +70,7 @@ describe('Detail Reducers tests', () => {
       pokemonEntryIsLoading: false,
     }
     expect(DetailReducer(initialState, action)).toEqual(expectedResult)
-  });
+  })
   it('Should return newState when action type GET_ENTRY_FAILED', () => {
     const action = {
       type: GET_ENTRY_FAILED,
@@ -83,5 +83,5 @@ describe('Detail Reducers tests', () => {
       pokemonEntryError: action.payload,
     }
     expect(DetailReducer(initialState, action)).toEqual(expectedResult)
-  });
-});
+  })
+})
