@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Detail from './pages/Detail'
+import Favorites from './pages/Favorites'
 import Register from './pages/Register'
 import Layout from './containers/Layout'
 
@@ -29,6 +30,7 @@ export default function RoutesComponent() {
         }>
           <Route path="/home" element={<Home />} />
           <Route path="/pokemon/:name" element={<Detail />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Route>
 
         {/* Not Found Route */}

@@ -29,7 +29,7 @@ export const initialState = {
   ...initialStatepokemonEntry,
 }
 
-const DetailReducer = (state = initialState, action) => {
+export const DetailReducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
     case GET_DETAILS_STARTED: {
