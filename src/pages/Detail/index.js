@@ -9,6 +9,7 @@ import LoaderComponent from '../../components/Loader'
 import GetPokemonDetails, { GetPokemonEntry } from '../../redux/actions/DetailActions'
 
 import './Detail.scss'
+import Chart from '../../components/Chart'
 
 function Detail({ pokemonDetails, isloading, pokemonEntry }) {
   const location = useLocation()
@@ -45,9 +46,36 @@ function Detail({ pokemonDetails, isloading, pokemonEntry }) {
     pokemon.types.map((type) => <label key={`${type.type.name}`}>{type.type.name}</label>)
   )
 
+  const renderStats = (stats) => {
+    if (stats.length > 0) {
+      const captions = {
+        attack: 'AT',
+        defense: 'DF',
+        hp: 'HP',
+        'special-attack': 'SA',
+        'special-defense': 'SD',
+        speed: 'SP',
+      }
+      const data = {}
+      stats.forEach((stat) => {
+        data[stat.stat.name] = stat.base_stat/255
+      })
+      return (
+        <Chart
+          data={[{
+            data,
+            meta: { color: 'blue'}
+          }]}
+          captions={captions}
+        />
+      )
+    }
+    return null
+  }
+
   const handlePokeInfo = () => {
     if (pokemon) {
-      const { name, id } = pokemon
+      const { name, id, stats } = pokemon
       return (
         <Container>
           <LoaderComponent show={isloading} />
@@ -67,9 +95,12 @@ function Detail({ pokemonDetails, isloading, pokemonEntry }) {
                   </h5>
                 }
                 {entry &&
-                  <h5>
-                    <strong>Growth rate: </strong> {entry.growth_rate.name}
-                  </h5>
+                  <div className="detail-card__stats">
+                    <h5>
+                      <strong>Growth rate: </strong> {entry.growth_rate.name}
+                    </h5>
+                    {renderStats(stats)}
+                  </div>
                 }
               </section>
             </div>
@@ -89,12 +120,12 @@ Detail.propTypes = {
 }
 
 function mapStateToProps({
-  Detail: { pokemonDetails, pokemonDetailsIsLoading, pokemonEntry, PokemonEntryIsLoading }
+  Detail: { pokemonDetails, pokemonDetailsIsLoading, pokemonEntry, pokemonEntryIsLoading }
 }) {
   return {
     pokemonDetails,
     pokemonEntry,
-    isloading: pokemonDetailsIsLoading || PokemonEntryIsLoading,
+    isloading: pokemonDetailsIsLoading || pokemonEntryIsLoading,
   }
 }
 
