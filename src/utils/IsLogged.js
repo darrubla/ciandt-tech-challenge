@@ -1,14 +1,12 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { connect } from'react-redux'
 import PropTypes from 'prop-types'
 
-import { auth } from '../services/firebase'
 
 function IsLogged(props) {
-  const { children } = props
-  const [user] = useAuthState(auth)
-  if (!user) {
+  const { children, userIsLogged } = props
+  if (!userIsLogged) {
     return <Navigate to="/" />
   }
 
@@ -17,9 +15,17 @@ function IsLogged(props) {
 
 IsLogged.propTypes = {
   children: PropTypes.element,
+  userIsLogged: PropTypes.bool.isRequired,
 }
 IsLogged.defaultProps = {
   children: <div>Element</div>,
 }
 
-export default IsLogged
+function mapStateToProps({ Auth: { isLogged } }) {
+  return {
+    userIsLogged: isLogged,
+  }
+}
+
+
+export default connect(mapStateToProps)(IsLogged)

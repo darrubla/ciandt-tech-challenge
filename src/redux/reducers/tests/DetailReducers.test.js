@@ -5,6 +5,7 @@ import {
   GET_ENTRY_STARTED,
   GET_ENTRY_SUCCESS,
   GET_ENTRY_FAILED,
+  CLEAR_POKEMON_DETAILS,
 } from '../../constants'
 
 import { initialState, DetailReducer } from '../DetailReducers'
@@ -81,6 +82,15 @@ describe('Detail Reducers tests', () => {
       pokemonEntryFailed: true,
       pokemonEntryIsLoading: false,
       pokemonEntryError: action.payload,
+    }
+    expect(DetailReducer(initialState, action)).toEqual(expectedResult)
+  })
+  it('Should return newState when action type CLEAR_POKEMON_DETAILS', () => {
+    const action = {
+      type: CLEAR_POKEMON_DETAILS,
+    }
+    const expectedResult = {
+      ...initialState,
     }
     expect(DetailReducer(initialState, action)).toEqual(expectedResult)
   })

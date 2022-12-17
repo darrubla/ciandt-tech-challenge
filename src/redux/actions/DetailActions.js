@@ -10,6 +10,7 @@ import {
   GET_ENTRY_STARTED,
   GET_ENTRY_SUCCESS,
   GET_ENTRY_FAILED,
+  CLEAR_POKEMON_DETAILS
 } from '../constants'
 
 export const GetPokemonDetailsStarted = () => ({
@@ -38,6 +39,10 @@ export const GetPokemonEntrySuccess = (payload) => ({
 export const GetPokemonEntryFailed = (payload) => ({
   type: GET_ENTRY_FAILED,
   payload,
+})
+
+export const ClearPokemonDetails = () => ({
+  type: CLEAR_POKEMON_DETAILS,
 })
 
 const GetPokemonDetails = (pokemonName) => async (dispatch) => {
