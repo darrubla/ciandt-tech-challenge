@@ -6,6 +6,7 @@ import {
   GET_ENTRY_STARTED,
   GET_ENTRY_SUCCESS,
   GET_ENTRY_FAILED,
+  CLEAR_POKEMON_DETAILS,
 } from '../constants'
 
 const initialStatePokemonDetails = {
@@ -80,6 +81,11 @@ export const DetailReducer = (state = initialState, action) => {
         pokemonEntryFailed: true,
         pokemonEntryIsLoading: false,
         pokemonEntryError: payload,
+      }
+    }
+    case CLEAR_POKEMON_DETAILS: {
+      return {
+        ...initialState,
       }
     }
     default:

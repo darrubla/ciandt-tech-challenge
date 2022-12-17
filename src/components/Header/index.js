@@ -12,7 +12,7 @@ import notify from '../../utils/notifyToast'
 
 import './Header.scss'
 
-function Header({ name, filterPokemon }) {
+function Header({ name, filterPokemon, filterPokemonIsLoading }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
@@ -35,8 +35,12 @@ function Header({ name, filterPokemon }) {
   }, [])
 
   useEffect(() => {
-    if (location?.pathname !== 'home' && filterPokemon) {
+    if (location?.pathname !== 'home' && filterPokemon?.id) {
       navigate('/home')
+    }
+    if (!filterPokemon?.id && !filterPokemonIsLoading) {
+      setInputText('')
+      setValue('')
     }
   }, [filterPokemon])
 
@@ -84,12 +88,13 @@ function Header({ name, filterPokemon }) {
 Header.propTypes = {
   name: PropTypes.string.isRequired,
   filterPokemon: PropTypes.object.isRequired,
-  isloading: PropTypes.bool.isRequired,
+  filterPokemonIsLoading: PropTypes.bool.isRequired,
 }
 
-function mapStateToProps({ Filter: { filterPokemon } }) {
+function mapStateToProps({ Filter: { filterPokemon, filterPokemonIsLoading } }) {
   return {
     filterPokemon,
+    filterPokemonIsLoading
   }
 }
 

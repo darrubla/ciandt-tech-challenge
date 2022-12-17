@@ -5,6 +5,7 @@ import {
   GET_ENTRY_STARTED,
   GET_ENTRY_SUCCESS,
   GET_ENTRY_FAILED,
+  CLEAR_POKEMON_DETAILS,
 } from '../../constants'
 
 import {
@@ -14,6 +15,7 @@ import {
   GetPokemonEntryStarted,
   GetPokemonEntrySuccess,
   GetPokemonEntryFailed,
+  ClearPokemonDetails
 } from '../DetailActions'
 
 describe('Detail actions type test', () => {
@@ -52,5 +54,11 @@ describe('Detail actions type test', () => {
       type: GET_ENTRY_FAILED,
     }
     expect(GetPokemonEntryFailed()).toEqual(expectedAction)
+  })
+  it('dispatch action when action type CLEAR_POKEMON_DETAILS', () => {
+    const expectedAction = {
+      type: CLEAR_POKEMON_DETAILS,
+    }
+    expect(ClearPokemonDetails()).toEqual(expectedAction)
   })
 })

@@ -35,6 +35,8 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig)
 const auth = app.auth()
 const db = app.firestore()
+// eslint-disable-next-line
+const userData = JSON.parse(JSON.stringify(auth['_delegate'])).currentUser
 
 const googleProvider = new firebase.auth.GoogleAuthProvider()
 
@@ -145,6 +147,7 @@ const logout = () => {
 export {
   auth,
   db,
+  userData,
   updateFavorites,
   removeFavorites,
   addFavorites,

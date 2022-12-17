@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { BottomNavigation, BottomNavigationAction } from '@mui/material'
@@ -11,10 +12,14 @@ import { logout, auth } from '../../services/firebase'
 
 import './Layout.scss'
 import IsLogged from '../../utils/IsLogged'
+import { userLoggedOut } from '../../redux/actions/AuthActions'
+import { ClearFilter } from '../../redux/actions/FilterActions'
+
 
 const url = ['/home', '/favorites']
 
 export default function Layout({ children }) {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
   const [user] = useAuthState(auth)
@@ -25,6 +30,7 @@ export default function Layout({ children }) {
       navigate(url[value])
     } else if (parseInt(value, 10) === 2) {
       logout()
+      dispatch(userLoggedOut())
       navigate('/')
     }
   }, [value])
@@ -45,7 +51,7 @@ export default function Layout({ children }) {
             setValue(newValue)
           }}
         >
-          <BottomNavigationAction label="Home" icon={<Icon>home</Icon>} />
+          <BottomNavigationAction onClick={() => dispatch(ClearFilter())} label="Home" icon={<Icon>home</Icon>} />
           <BottomNavigationAction
             label="Favorites"
             icon={<Icon>favorite</Icon>}

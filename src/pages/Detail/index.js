@@ -8,6 +8,7 @@ import LoaderComponent from '../../components/Loader'
 
 import GetPokemonDetails, {
   GetPokemonEntry,
+  ClearPokemonDetails,
 } from '../../redux/actions/DetailActions'
 
 import './Detail.scss'
@@ -21,6 +22,7 @@ function Detail({ pokemonDetails, isloading, pokemonEntry }) {
   const [entry, setEntry] = useState(null)
 
   useEffect(() => {
+    dispatch(ClearPokemonDetails())
     if (!pokemon) {
       dispatch(GetPokemonDetails(pathname))
     }
@@ -43,6 +45,8 @@ function Detail({ pokemonDetails, isloading, pokemonEntry }) {
       dispatch(GetPokemonEntry(pokemon.id))
     }
   }, [pokemon])
+
+  console.log(pokemon?.name);
 
   const showTypes = () =>
     pokemon.types.map((type) => (
@@ -82,9 +86,9 @@ function Detail({ pokemonDetails, isloading, pokemonEntry }) {
     if (pokemon) {
       const { name, id, stats } = pokemon
       return (
-        <Container>
+        <Container key={name}>
           <LoaderComponent show={isloading} />
-          <section className="detail-card container" to={`/${name}`}>
+          <section key={name} className="detail-card container" to={`/${name}`}>
             <div className="detail-card__title">
               <h3>
                 #{id} - {name}
